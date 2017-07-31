@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>自动打字</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                background: #000;
+                color: white;
+            }
+            @keyframes typing {
+                from { width: 0 }
+            }
+
+            @keyframes caret {
+                50% { border-right-color: transparent; }
+            }
+
+            h1 {
+            font: bold 200% Consolas, Monaco, monospace;
+            width: 108ch;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: .05em solid;
+            animation: typing 10.8s steps(108),
+                       caret 1s steps(1) infinite;
+            }
+        </style>
+    </head>
+    <body>
+        <span>&gt;&gt;&gt;</span>
+        <span class="text"></span>
+        <i class="cursor" style="display: none; border-right:2px solid #fff;"></i>
+        <h1>The ZGMF-X20A Strike Freedom Gundam (aka Strike Freedom, Freedom) is the successor of the ZGMF-X10A Freedom.</h1>
+        <script>
+            const $ = attr => document.querySelector(attr);
+const textDom = $('.text');
+            const cursorDom = $('.cursor');
+            const input = (text) => {
+            const textArr = text.split('');
+            let index = 0;
+            const timer = setInterval(() => {
+                const showText = textArr.slice(0, index).join('').replace(/\<span\>([\s\S]*)\<\/span\>/ig, '\<span style="color: #415caa"\>$1\<\/span\>');
+                textDom.innerHTML = showText;
+                var current = text.substr(index, 1);
+                if (current === '<') {
+                    index = text.indexOf('>', index) + 1;
+                }   
+                else {
+                    index++;
+                } 
+                if (index > textArr.length) clearInterval(timer);
+            }, 100);
+            setInterval(() => {
+                if (cursorDom.style.display === 'none') {
+                cursorDom.style.display = 'inline';
+                } else {
+                cursorDom.style.display = 'none';
+                }
+            }, 500);
+            }
+            input('The ZGMF-X20A Strike Freedom Gundam (aka Strike Freedom, Freedom) is <span>the successor</span> of the ZGMF-X10A Freedom.');
+        </script>
+    </body>
+</html>
