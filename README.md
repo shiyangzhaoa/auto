@@ -1,2 +1,3 @@
 # auto
 ## 本来只是想写一个自动打字的效果，结果越写越多，写成了现在的效果...
+[demo-有萌妹子](https://shiyangzhaoa.github.io/auto/)
