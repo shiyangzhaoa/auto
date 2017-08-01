@@ -51,7 +51,7 @@
         <div class="header">
             编辑器
         </div>
-        <span>&gt;&gt;&gt;</span>
+        <span>&gt;</span>
         <span class="text"></span>
         <i class="cursor" style="display: none; border-right:6px solid #30ad23;"></i>
     </div>
@@ -65,7 +65,7 @@
             const textArr = text.split('');
             let index = 0;
             const timer = setInterval(() => {
-                const showText = textArr.slice(0, index).join('').replace(/<\/br>/ig, '</br>>>> ').replace(/<span\sclass\=\"js\">([^\/]*)<\/span>/ig, '\<span style="color: #415caa"\>$1\<\/span\>').replace(/<span\sclass\=\"fun\">([^\/]*)<\/span>/ig, '\<span style="color: #de5d52"\>$1\<\/span\>');
+                const showText = textArr.slice(0, index).join('').replace(/<\/br>/ig, '</br>> ').replace(/<span\sclass\=\"js\">([^\/]*)<\/span>/ig, '\<span style="color: #415caa"\>$1\<\/span\>').replace(/<span\sclass\=\"fun\">([^\/]*)<\/span>/ig, '\<span style="color: #de5d52"\>$1\<\/span\>');
                 if(/#000$/.test(showText)) {
                     shell.style.backgroundColor = '#000';
                 };
