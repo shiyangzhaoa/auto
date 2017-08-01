@@ -76,6 +76,7 @@
                     .replace(/<\/br>/ig, '</br>> ')
                     .replace(/<span\sclass\=\"js\">([^\/]*)<\/span>/ig, '\<span style="color: #415caa"\>$1\<\/span\>')
                     .replace(/<span\sclass\=\"fun\">([^\/]*)<\/span>/ig, '\<span style="color: #de5d52"\>$1\<\/span\>');
+                textDom.innerHTML = showText;
                 if (/#000$/.test(showText)) {
                     shell.style.backgroundColor = '#000';
                 };
@@ -85,12 +86,11 @@
                 if (/10px$/.test(showText)) {
                     shell.style.fontSize = '10px';
                 };
-                if (/\.\.\.\.\.\.$/.test(showText)) {
+                if (/\.{6}$/.test(showText)) {
                     const remark = $('.remark');
                     remark.style.color = '#ffda23';
                     shell.style.color = '#ffda23';
                 }
-                textDom.innerHTML = showText;
                 var current = text.substr(index, 1);
                 if (current === '<') {
                     index = text.indexOf('>', index) + 1;
