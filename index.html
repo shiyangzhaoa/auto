@@ -1,66 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <title>打字动画</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <style>
-            body {
-                background: #000;
-                color: white;
-            }
-            @keyframes typing {
-                from { width: 0 }
-            }
 
-            @keyframes caret {
-                50% { border-right-color: transparent; }
-            }
+<head>
+    <title>打字动画</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        .shell {
+            width: 400px;
+            height: 300px;
+            border: 2px solid #000;
+            border-radius: 5px;
+            font-size: 15px;
+            color: #ccc;
+        }
+        .header {
+            width: 100%;
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            border-bottom: 2px solid #ccc;
+        }
 
-            h1 {
+        @keyframes typing {
+            from {
+                width: 0
+            }
+        }
+
+        @keyframes caret {
+            50% {
+                border-right-color: transparent;
+            }
+        }
+
+        h1 {
             font: bold 200% Consolas, Monaco, monospace;
             width: 108ch;
             white-space: nowrap;
             overflow: hidden;
             border-right: .05em solid;
             animation: typing 10.8s steps(108),
-                       caret 1s steps(1) infinite;
-            }
-        </style>
-    </head>
-    <body>
+            caret 1s steps(1) infinite;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="shell">
+        <div class="header">
+            编辑器
+        </div>
         <span>&gt;&gt;&gt;</span>
         <span class="text"></span>
-        <i class="cursor" style="display: none; border-right:2px solid #fff;"></i>
-        <h1>The ZGMF-X20A Strike Freedom Gundam (aka Strike Freedom, Freedom) is the successor of the ZGMF-X10A Freedom.</h1>
-        <script>
-            const $ = attr => document.querySelector(attr);
-const textDom = $('.text');
-            const cursorDom = $('.cursor');
-            const input = (text) => {
+        <i class="cursor" style="display: none; border-right:2px solid #30ad23;"></i>
+    </div>
+    <h1>The ZGMF-X20A Strike Freedom Gundam (aka Strike Freedom, Freedom) is the successor of the ZGMF-X10A Freedom.</h1>
+    <script>
+        const $ = attr => document.querySelector(attr);
+        const textDom = $('.text');
+        const cursorDom = $('.cursor');
+        const shell = $('.shell')
+        const input = (text) => {
             const textArr = text.split('');
             let index = 0;
             const timer = setInterval(() => {
-                const showText = textArr.slice(0, index).join('').replace(/\<span\>([\s\S]*)\<\/span\>/ig, '\<span style="color: #415caa"\>$1\<\/span\>');
+                const showText = textArr.slice(0, index).join('').replace(/<\/br>/ig, '</br>>>> ').replace(/<span\sclass\=\"js\">([^\/]*)<\/span>/ig, '\<span style="color: #415caa"\>$1\<\/span\>').replace(/<span\sclass\=\"fun\">([^\/]*)<\/span>/ig, '\<span style="color: #de5d52"\>$1\<\/span\>');
+                if(/#000$/.test(showText)) {
+                    shell.style.backgroundColor = '#000';
+                };
+                if(/#30ad23$/.test(showText)) {
+                    shell.style.color = '#30ad23';
+                };
+                if(/淘宝的字体$/.test(showText)) {
+                    shell.style.fontFamily = 'Helvetica, "Hiragino Sans GB", "Microsoft Yahei", "微软雅黑", Arial, sans-serif';
+                };
                 textDom.innerHTML = showText;
                 var current = text.substr(index, 1);
                 if (current === '<') {
                     index = text.indexOf('>', index) + 1;
-                }   
+                }
                 else {
                     index++;
-                } 
-                if (index > textArr.length) clearInterval(timer);
-            }, 100);
-            setInterval(() => {
-                if (cursorDom.style.display === 'none') {
-                cursorDom.style.display = 'inline';
-                } else {
-                cursorDom.style.display = 'none';
                 }
-            }, 500);
-            }
-            input('The ZGMF-X20A Strike Freedom Gundam (aka Strike Freedom, Freedom) is <span>the successor</span> of the ZGMF-X10A Freedom.');
-        </script>
-    </body>
+                cursorDom.style.display = 'inline';
+                if (index > textArr.length) {
+                    clearInterval(timer);
+                    const cursonTimer = setInterval(() => {
+                        if (cursorDom.style.display === 'none') {
+                            cursorDom.style.display = 'inline';
+                        } else {
+                            cursorDom.style.display = 'none';
+                        }
+                    }, 500);
+                };
+            }, 100);
+        }
+        input('<span class="js">const</span> <span style="color: #a3c6ec">object</span> = <span style="color: #efc014">{}</span>;</br><span class="js">object</span>.<span class="fun">name</span> = "balala";</br><span style="color: #dee619">//还是改变一下样式吧!背景色设成#000</span></br><span style="color: #dee619">//还是不好看，字体颜色设成</span><span style="color: #30ad23">原谅绿#30ad23</span>;</br><span style="color: #dee619">//再改一下字体，改为淘宝的字体;</span>');
+    </script>
+</body>
 </html>
