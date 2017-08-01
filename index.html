@@ -14,6 +14,7 @@
             font-size: 15px;
             color: #ccc;
         }
+
         .header {
             width: 100%;
             height: 25px;
@@ -66,16 +67,16 @@
             let index = 0;
             const timer = setInterval(() => {
                 const showText = textArr.slice(0, index).join('')
-                                        .replace(/<\/br>/ig, '</br>> ')
-                                        .replace(/<span\sclass\=\"js\">([^\/]*)<\/span>/ig, '\<span style="color: #415caa"\>$1\<\/span\>')
-                                        .replace(/<span\sclass\=\"fun\">([^\/]*)<\/span>/ig, '\<span style="color: #de5d52"\>$1\<\/span\>');
-                if(/#000$/.test(showText)) {
+                    .replace(/<\/br>/ig, '</br>> ')
+                    .replace(/<span\sclass\=\"js\">([^\/]*)<\/span>/ig, '\<span style="color: #415caa"\>$1\<\/span\>')
+                    .replace(/<span\sclass\=\"fun\">([^\/]*)<\/span>/ig, '\<span style="color: #de5d52"\>$1\<\/span\>');
+                if (/#000$/.test(showText)) {
                     shell.style.backgroundColor = '#000';
                 };
-                if(/#30ad23$/.test(showText)) {
+                if (/#30ad23$/.test(showText)) {
                     shell.style.color = '#30ad23';
                 };
-                if(/淘宝的字体$/.test(showText)) {
+                if (/淘宝的字体$/.test(showText)) {
                     shell.style.fontFamily = 'Helvetica, "Hiragino Sans GB", "Microsoft Yahei", "微软雅黑", Arial, sans-serif';
                 };
                 textDom.innerHTML = showText;
@@ -102,4 +103,5 @@
         input('<span class="js">const</span> <span style="color: #a3c6ec">object</span> = <span style="color: #efc014">{}</span>;</br><span class="js">object</span>.<span class="fun">name</span> = "balala";</br><span style="color: #dee619">//还是改变一下样式吧!背景色设成#000</span></br><span style="color: #dee619">//还是不好看，字体颜色设成</span><span style="color: #30ad23">原谅绿#30ad23</span>;</br><span style="color: #dee619">//再改一下字体，改为淘宝的字体;</span>');
     </script>
 </body>
+
 </html>
