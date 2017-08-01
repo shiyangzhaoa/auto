@@ -12,7 +12,7 @@
             border: 2px solid #000;
             border-radius: 5px;
             font-size: 15px;
-            color: #ccc;
+            color: #828282;
         }
 
         .header {
@@ -21,6 +21,12 @@
             line-height: 25px;
             text-align: center;
             border-bottom: 2px solid #ccc;
+        }
+
+        img {
+            width: 80px;
+            height: auto;
+            vertical-align: top;
         }
 
         @keyframes typing {
@@ -61,7 +67,7 @@
         const $ = attr => document.querySelector(attr);
         const textDom = $('.text');
         const cursorDom = $('.cursor');
-        const shell = $('.shell')
+        const shell = $('.shell');
         const input = (text) => {
             const textArr = text.split('');
             let index = 0;
@@ -76,9 +82,14 @@
                 if (/#30ad23$/.test(showText)) {
                     shell.style.color = '#30ad23';
                 };
-                if (/淘宝的字体$/.test(showText)) {
-                    shell.style.fontFamily = 'Helvetica, "Hiragino Sans GB", "Microsoft Yahei", "微软雅黑", Arial, sans-serif';
+                if (/10px$/.test(showText)) {
+                    shell.style.fontSize = '10px';
                 };
+                if (/\.\.\.\.\.\.$/.test(showText)) {
+                    const remark = $('.remark');
+                    remark.style.color = '#ffda23';
+                    shell.style.color = '#ffda23';
+                }
                 textDom.innerHTML = showText;
                 var current = text.substr(index, 1);
                 if (current === '<') {
@@ -100,7 +111,7 @@
                 };
             }, 100);
         }
-        input('<span class="js">const</span> <span style="color: #a3c6ec">object</span> = <span style="color: #efc014">{}</span>;</br><span class="js">object</span>.<span class="fun">name</span> = "balala";</br><span style="color: #dee619">//还是改变一下样式吧!背景色设成#000</span></br><span style="color: #dee619">//还是不好看，字体颜色设成</span><span style="color: #30ad23">原谅绿#30ad23</span>;</br><span style="color: #dee619">//再改一下字体，改为淘宝的字体;</span>');
+        input('<span class="js">const</span> <span style="color: #a3c6ec">object</span> = <span style="color: #efc014">{}</span>;</br><span class="js">object</span>.<span class="fun">name</span> = "balala";</br><span class="remark">//还是改变一下样式吧!背景色设成#000;</span></br><span class="remark">//还是不好看，字体颜色设成</span><span style="color: #30ad23">原谅绿#30ad23</span>;</br><span class="remark">//再改一下字体大小，改为10px;</span></br><span class="remark">//我还想加一个软妹子的皂片，不知道可不可以( ´´ิ∀´ิ` )......</span></br>=͟͟͞͞( •̀д•́) 哇！我怎么变黄了...不管了，召唤妹子..........</br><img src="https://img1.doubanio.com/view/photo/photo/public/p640443097.jpg"></br>');
     </script>
 </body>
 
